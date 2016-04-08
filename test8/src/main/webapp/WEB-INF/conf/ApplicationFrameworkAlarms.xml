@@ -1,0 +1,2228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	== com.spartan.pluggable.logger.config.model.AppAlarm ==
+
+	Application Alarm Configurations are based on Domain Driven Design
+	Alarms are configured as per Bounded Context and Domain wise
+	Bounded Context
+		Domains
+			Alarms are classified into the following App Architecture Layers
+				1 = WEB SERIVCE
+				2 = DOMAIN SERVICE
+				3 = DATABASE SERVICE
+				4 = EXTERNAL SERVICE
+				5 = EVENT BUS
+				6 = ANALYTICS SERVICE
+				7 = SCHEDULER SERVICE
+
+	Every Alarm has the following properties
+
+		Alarm ID (Unique ID) : Combination fields from Below. From Bounded Context to Event Action.
+		==
+		Bounded Context ID
+		Domain ID
+		Alarm Layer (Web Service, Domain Service, Database Service etc)
+		Alarm Severity (Trace, Debug, Info, Warning, Critical, Fatal)
+		Alarm Context
+		Alarm Status (Based on HTTP Status Codes)
+		Event Action (Based on Unix File System Permissions)
+
+		Message
+		Diagnosis
+		Solution
+
+	For Every Alarm you can define the Alarm Log properties for various Log Connectors like Database, 
+	File, Syslog, Splunk etc
+
+	Alarm Severity represents the state of the Alarm respective to that specific part of the App.
+
+		0 = Trace
+		1 = Debug
+		2 = Info
+		3 = Warning
+		4 = Critical
+		5 = Fatal
+	
+	Alarm Status Code is classified based on HTTP Status Codes 
+
+		1xx = Informational
+		2xx = Success
+		4xx = Client Error
+		5xx = Server Error
+
+	https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+
+	Event Action which Triggered this Alarm : Based on Unix File Permissions
+
+		1 = UPDATE
+		2 = WRITE
+		3 = WRITE & UPDATE
+		4 = READ
+		5 = READ, UPDATE
+		6 = READ, WRITE
+		7 = READ, WRITE & UPDATE
+		8 = DELETE
+
+	Alarm Log Priority is based on every connector. A Severity 1 Alarm can have log Priority of 5 for 
+	File Connector and Log Priority of 1 for Database Connector. Which means even though the Alarm 
+	Severity is low it should be logged into File and not into the Database.
+
+	This gives a very granular control on switching on an Alarm for a specific Bounded Context
+	or a Domain in App Runtime without disturbing the App or losing the App State and without
+	incurring performance penalties.
+
+	System Automatically Generates a Unique Alarm ID which contains the following
+	BoundedContextID, Domain ID, App Layer, Severity, Alarm Context, Status
+
+	Eg. SHPPR456107402 : It Says web Service Call failed in the Shopping Context Product Search with Severity 5
+
+	    SHP = Bounded Context ID : Shopping Module
+	    PR  = Domain ID : Product Catalogue
+	    4   = App Layer - Web Service
+	    5   = Alarm Severity (Critical)
+	    6	= Event Action (Read, Write)
+	    107 = Alarm Context
+	    402 = Status Code
+
+	
+-->
+<AppFrameworkAlarms alarmVersion="1" reLoad="false">
+	<framework.refresh timeUnit="minutes">5</framework.refresh>
+	<!-- DONT EDIT THESE SYSTEM ALARMS  - START -->
+	<BoundedContext name="System" id="APS" system="no">
+		<!-- Authentication Serice Scope for the App -->
+		<Domain name="AAA Service" id="ATN" trace="no" criticality="3" connectorLogPriority="1,2,-1,-1">
+			<AppAlarm context="900" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Authentication Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Authentication Request Failed: Access Denied %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="901" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Authentication Request Failed: Bad Credentials %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>401</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="902" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Authentication Request Failed: Account Locked %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>401</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="903" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Authentication Request Failed: Customer Account Locked %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>401</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="904" severity="2" connectorLogPriority="5,5,-1,-1">
+				<layer>3</layer>
+				<message>Fetched Records Successfully: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="904" severity="4" connectorLogPriority="5,5,-1,-1">
+				<layer>3</layer>
+				<message>Request for Fetching Records Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Adding Data Successfully to Authentication Domain: =%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Add Authentication data Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Updating Data Successfully to Authentication Domain: =%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Updating Authentication data Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Deleting Data Successfully from Authentication Domain: =%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Deleting Authentication data Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+
+			<AppAlarm context="900" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Add User Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Add User Request Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Add User Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="921" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Update User Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="921" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Update User Request Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="921" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Update User Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="931" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Lock User Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="931" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Lock User Request Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="931" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Lock User Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<!-- User Password Management -->
+			<AppAlarm context="950" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Change Password Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="950" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Change Password Request Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="950" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Change Password Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="951" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Reset Password Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="951" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Reset Password Request Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="951" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Reset Password Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="952" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Password Security Question Update Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="952" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Password Security Question Update Request Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="952" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Password Security Question Update Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<!-- OTP Used as Multi Factor Authentication -->
+			<AppAlarm context="960" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>User MFA : OTP Generation Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="960" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>User MFA : OTP Generaton Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="961" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>User MFA : OTP Validation Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="961" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>User MFA : OTP Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<!-- OTP Management : Forgot Password -->
+			<AppAlarm context="962" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Forgot Password : OTP Generation Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="962" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Forgot Password : OTP Generaton Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="963" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Forgot Password : OTP Validation Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="963" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Forgot Password : OTP Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<!-- OTP Management : App Specific OTP Usage -->
+			<AppAlarm context="964" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>OTP Generation Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="964" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>OTP Generaton Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="965" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>OTP Validation Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="965" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>OTP Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+				<AppAlarm context="966" severity="2" connectorLogPriority="5,5,-1,-1">
+				<layer>3</layer>
+				<message>Fetched Records Successfully: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="966" severity="4" connectorLogPriority="5,5,-1,-1">
+				<layer>3</layer>
+				<message>Request for Fetching Records Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+		</Domain>
+		<!-- User Role Management -->
+		<Domain name="Authorization Service" id="ATR" trace="no" criticality="3" connectorLogPriority="1,2,-1,-1">
+			<AppAlarm context="900" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Authorization Request Succeeded for the Resource %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Authorization Request Failed for the Resource %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>403</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Authorization Request Failed for the Resource %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>404</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Add User Role Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Adding Data Successfully to Authorization Domain: =%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Add Authorization data Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Updating Data Successfully to Authorization Domain: =%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Updating Authorization data Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Deleting Data Successfully from Authorization Domain: =%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Deleting Authorization data Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Add User Role Request Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Add User Role Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Delete User Role Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Delete User Role Request Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Delete User Role Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<!-- Role Mapping -->
+			<AppAlarm context="901" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Map Role to User, Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="901" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Map Role to User, Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="901" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Map Role to User, Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="901" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Delete Role to User, Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="901" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Delete Role to User, Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="901" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Delete Role to User, Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<!-- Feature Mapping -->
+			<AppAlarm context="921" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Map Feature to Role, Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="921" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Map Feature to Role, Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="921" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Map Feature to Role, Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="921" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Delete Feature to Role, Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="921" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Delete Feature to Role, Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="921" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Delete Feature to Role, Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+				<AppAlarm context="922" severity="2" connectorLogPriority="5,5,-1,-1">
+				<layer>3</layer>
+				<message>Fetched Records Successfully: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="922" severity="4" connectorLogPriority="5,5,-1,-1">
+				<layer>3</layer>
+				<message>Request for Fetching Records Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+		</Domain>
+	</BoundedContext>
+	<BoundedContext name="Organization" id="OBC" system="no">
+		<!-- Contact Management -->
+		<Domain name="Contact Managment Service" id="CNT" trace="no" criticality="3" connectorLogPriority="1,2,-1,-1">
+			<AppAlarm context="900" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Add Contact Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Add Contact Request Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Add Contact Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Update Contact Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Update Contact Request Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Update Contact Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Delete Contact Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Delete Contact Request Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Delete Contact Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<!-- Contact Address -->
+			<AppAlarm context="921" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Add Contact.Address Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="921" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Add Contact.Address Request Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="921" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Add Contact.Address Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="921" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Update Contact.Address Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="921" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Update Contact.Address Request Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="921" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Update Contact.Address Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="921" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Delete Contact.Address Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="921" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Delete Contact.Address Request Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="921" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Delete Contact.Address Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+				<AppAlarm context="922" severity="2" connectorLogPriority="5,5,-1,-1">
+				<layer>1</layer>
+				<message>Fetched Records Successfully: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="923" severity="4" connectorLogPriority="5,5,-1,-1">
+				<layer>1</layer>
+				<message>Request for Fetching Records Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+		</Domain>
+		<!-- Location Management -->
+		<Domain name="Location Managment Service" id="LOC" trace="no" criticality="3" connectorLogPriority="1,2,-1,-1">
+			<AppAlarm context="900" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Add Location Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Add Location Request Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Add Location Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Update Location Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Update Location Request Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Update Location Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>3</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Delete Location Request Succeeded: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Delete Location Request Data Validation Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Delete Location Request Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+				<AppAlarm context="922" severity="2" connectorLogPriority="5,5,-1,-1">
+				<layer>1</layer>
+				<message>Fetched Records Successfully: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="923" severity="4" connectorLogPriority="5,5,-1,-1">
+				<layer>1</layer>
+				<message>Request for Fetching Records Failed: Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+		</Domain>
+	</BoundedContext>
+	<!--
+		Data Visualizer 
+		Query Engine  : Based on CQRS Pattern
+		Search Engine : Transparent Search across documents and databases
+		Cloud Drive   : Document Management similar to Google Drive
+	-->
+	<BoundedContext name="Data Visualizer" id="DVI" system="yes">
+		<Domain name="Query Engine" id="QE" trace="no" criticality="3" connectorLogPriority="1,2,-1,-1">
+			<AppAlarm context="900" severity="2" connectorLogPriority="4,2,-1,-1">
+				<layer>2</layer>
+				<message>Data Query Request Received: QueryID=%s | %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="3" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Data Query Request Completed: QueryID=%s | Time=%s | Rows=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Data Query Request Failed due to invalid query params. QueryID=%s | Reason=%s</message>
+				<diag>
+				Check out the Query Params which is used to filter the data. Error could be due Data type, invalid values as parameters etc.
+				</diag>
+				<solution>
+				Correct the query params and re-run the query again.
+				</solution>
+				<status>400</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Data Query Request Failed: QueryID=%s | Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+		</Domain>
+		<Domain name="Search Engine" id="SE" trace="no" criticality="3" connectorLogPriority="1,2,-1,-1">
+			<AppAlarm context="900" severity="2" connectorLogPriority="4,2,-1,-1">
+				<layer>2</layer>
+				<message>Search Query Request Received: QueryID=%s | %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Search Query Request Completed: QueryID=%s | Time=%s | Rows=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Search Query Request Failed due to invalid query params. QueryID=%s | Reason=%s</message>
+				<diag>
+				Check out the Query Params which is used to filter the data. Error could be due Data type, invalid values as parameters etc.
+				</diag>
+				<solution>
+				Correct the query params and re-run the query again.
+				</solution>
+				<status>400</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Search Query Request Failed: QueryID=%s | Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+		</Domain>
+		<Domain name="Cloud Drive" id="CD" trace="no" criticality="3" connectorLogPriority="1,2,-1,-1">
+			<!-- Folder Management -->
+			<AppAlarm context="900" severity="2" connectorLogPriority="4,2,-1,-1">
+				<layer>2</layer>
+				<message>Folder Create Request Received: Folder Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Folder Created Successfully: Folder Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Unable to create Folder! Folder Name=%s Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="901" severity="2" connectorLogPriority="4,2,-1,-1">
+				<layer>2</layer>
+				<message>Folder rename Request Received: Folder Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="901" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Folder renamed Successfully: Folder Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="901" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Unable to rename Folder! Folder Name=%s Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="902" severity="2" connectorLogPriority="4,2,-1,-1">
+				<layer>2</layer>
+				<message>Folder move Request Received: Folder Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="902" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Folder moved Successfully: Folder Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="902" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Unable to move Folder! Folder Name=%s Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="903" severity="2" connectorLogPriority="4,2,-1,-1">
+				<layer>2</layer>
+				<message>Folder delete Request Received: Folder Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="903" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Folder delete Successfully: Folder Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="903" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Unable to delete Folder! Folder Name=%s Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<!-- File Management -->
+			<AppAlarm context="911" severity="2" connectorLogPriority="4,2,-1,-1">
+				<layer>2</layer>
+				<message>File Create Request Received: File Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="911" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>File Created Successfully: File Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="911" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Unable to create File! File Name=%s Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="912" severity="2" connectorLogPriority="4,2,-1,-1">
+				<layer>2</layer>
+				<message>File rename Request Received: File Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="912" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>File renamed Successfully: File Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="912" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Unable to rename File! File Name=%s Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="913" severity="2" connectorLogPriority="4,2,-1,-1">
+				<layer>2</layer>
+				<message>File move Request Received: File Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="913" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>File moved Successfully: File Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="913" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Unable to move File! File Name=%s Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="914" severity="2" connectorLogPriority="4,2,-1,-1">
+				<layer>2</layer>
+				<message>File delete Request Received: File Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="914" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>File deleted Successfully: File Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="914" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Unable to delete File! File Name=%s Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<!-- Sharing -->
+			<AppAlarm context="931" severity="2" connectorLogPriority="4,2,-1,-1">
+				<layer>2</layer>
+				<message>File/Folder %s Shared with user %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="931" severity="4" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Unable to share File/Folder %s with user %s. Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+		</Domain>
+	</BoundedContext>
+	<!-- 
+		APP INSIGHTS ==
+		Keeps track of Disk, CPU, Memory Utilizations.
+	-->
+	<BoundedContext name="App Insight" id="AIS" system="yes">
+		<Domain name="Health Insight" id="HI" trace="no" criticality="3" connectorLogPriority="4,5,-1,-1">
+			<AppAlarm context="900" severity="3" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Disk space reached Threshold limit: Available Space=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="1" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Disk Space Utilization: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="900" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Disk space reached its limit: Zero Space Available.  %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="901" severity="3" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>CPU resource reached Threshold limit: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="901" severity="1" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>CPU Utilization: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="902" severity="3" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Memory resource reached Threshold limit: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="902" severity="1" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Memory Utilization: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="903" severity="3" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>JVM Memory resource reached Threshold limit: %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="903" severity="1" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>JVM Memory Utilization: Total Memory=%s | Available Memory=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="931" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Database Not reachable. Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="932" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>App Server Not reachable. Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="933" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Web Server Not reachable. Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="934" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Load Balancer Not reachable. Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="935" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Content Server Not reachable. Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+		</Domain>
+	</BoundedContext>
+	<!-- 
+		THESE ALARMS WILL BE USED AS A TEMPLATE FOR VARIOUS APP LAYERS BASED
+		ON THE TEMPLATE, THE SYSTEM WILL AUTOMATICALLY GENERATES APP SPECIFIC 
+		ALARMS FOR VARIOUS BOUNDED CONTEXT AND DOMAINS
+	-->
+	<BoundedContext name="Alarm Templates" id="TPL" template="yes">
+		<!-- Web Service Template : REST / SOAP for the App -->
+		<Domain name="Web Service" id="WS" trace="no" criticality="3" connectorLogPriority="4,5,-1,-1">
+			<AppAlarm context="100" severity="1" connectorLogPriority="1,1,-1,-1">
+				<layer>1</layer>
+				<message>Web Service Call initiated : %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>1</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="1" connectorLogPriority="1,1,-1,-1">
+				<layer>1</layer>
+				<message>Web Service Call initiated : %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="1" connectorLogPriority="1,1,-1,-1">
+				<layer>1</layer>
+				<message>Web Service Call initiated : %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="1" connectorLogPriority="1,1,-1,-1">
+				<layer>1</layer>
+				<message>Web Service Call initiated : %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="2" connectorLogPriority="4,1,-1,-1">
+				<layer>1</layer>
+				<message>Web Service Call completed : %s Time Taken = %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="2" connectorLogPriority="4,1,-1,-1">
+				<layer>1</layer>
+				<message>Web Service Call Status: Success! Class Name=% | Method Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="2" connectorLogPriority="4,1,-1,-1">
+				<layer>1</layer>
+				<message>Web Service Call Status: Success! New Resource created. Class Name=%s | Method Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>201</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="2" connectorLogPriority="4,1,-1,-1">
+				<layer>1</layer>
+				<message>Web Service Call Status: Success! Request accepted for processing. Class Name=% | Method Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>202</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="2" connectorLogPriority="4,1,-1,-1">
+				<layer>1</layer>
+				<message>Web Service Call Status: Success! Request processed successfully. No content to return. Class Name=% | Method Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>204</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="101" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Web Service Call Status: Failed due to bad request. Reason=%s</message>
+				<diag>
+				A runtime exception indicating a bad client request.
+				</diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>4</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ws.WebServiceBadRequestException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="101" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Web Service Call Status: Failed due to bad user credentials. Reason=%s</message>
+				<diag>
+				Access denied due to bad login id or password.
+				</diag>
+				<solution>
+				Check if the Caps lock is on in your keyboard and usage of Upper Case and Lower Case letter in
+				login credentials.
+				</solution>
+				<status>401</status>
+				<eventAction>4</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.auth.AccessDeniedException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="101" severity="2" connectorLogPriority="4,1,-1,-1">
+				<layer>1</layer>
+				<message>Web Service Call Status: Failed! Payment Required. Status=%s</message>
+				<diag>
+				This is a paid service. Your payment process failed to complete the request.
+				</diag>
+				<solution></solution>
+				<status>402</status>
+				<eventAction>4</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ws.WebServicePaymentRequiredException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="101" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Web Service Call Status: Failed due to unauthorized resource. Reason=%s</message>
+				<diag>
+				A runtime exception indicating that an access to a resource requested by a client has been forbidden by the server.
+				</diag>
+				<solution></solution>
+				<status>403</status>
+				<eventAction>4</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.auth.AuthorizationException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="102" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Web Service Call Status: Failed! Method not allowed.  %s</message>
+				<diag>
+				A runtime exception indicating a resource requested by a client was not found on the server.
+				</diag>
+				<solution></solution>
+				<status>405</status>
+				<eventAction>4</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ws.WebServiceMethodNotFoundException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="102" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Web Service Call Status: Failed! Too many requests. %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>429</status>
+				<eventAction>4</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ws.WebServiceTooManyRequestsException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="103" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>1</layer>
+				<message>Web Service Call Status: Failed! Invalid Protocol.  %s</message>
+				<diag>
+				A runtime exception indicating a resource requested by a client using an Invalid Protocol.
+				</diag>
+				<solution></solution>
+				<status>405</status>
+				<eventAction>4</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ws.WebServiceInvalidProtocolException</exceptionClass>
+			</AppAlarm>
+		</Domain>
+
+		<!-- Domain Service Template : Business Rules -->
+		<Domain name="Domain Service Template" id="DS" trace="no" criticality="3" connectorLogPriority="4,5,-1,-1">
+			<AppAlarm context="100" severity="1" connectorLogPriority="1,1,-1,-1">
+				<layer>2</layer>
+				<message>Domain Service Call initiated : %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>7</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="2" connectorLogPriority="4,1,-1,-1">
+				<layer>2</layer>
+				<message>Domain Service Call completed : %s Time Taken = %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>7</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="4" connectorLogPriority="4,1,-1,-1">
+				<layer>2</layer>
+				<message>Domain Service Call Success! : Class Name=%s | Method Name=%s </message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>7</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="2" connectorLogPriority="4,1,-1,-1">
+				<layer>2</layer>
+				<message>Domain Service Call: Request accepted for processing..</message>
+				<diag></diag>
+				<solution></solution>
+				<status>202</status>
+				<eventAction>7</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="101" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Domain Service Call Failed! Bad Request = %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>7</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ds.BusinessRulePreConditionException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="101" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Domain Service Call Failed! Internal Server Error = %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>7</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ds.BusinessRuleInternalError</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="101" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Domain Service Call Failed! Service unavailable = %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>503</status>
+				<eventAction>7</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ds.BusinessRuleNotFoundException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="101" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Domain Service Call Failed! Business Process failure = %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>530</status>
+				<eventAction>7</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ds.BusinessRuleFailedException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="102" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Domain Service Call Failed! Business Process Interrupted = %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>7</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ds.BusinessRuleInterruptedException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="120" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Domain Service:  Business Aspect Failed = %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>7</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ds.BusinessAspectFailedException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="130" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Domain Service: Batch Process Failed = %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>7</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ds.BatchProcessFailedException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="131" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Domain Service: Batch Process Interrupted = %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>7</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ds.BatchProcessInterruptedException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="132" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Domain Service: Batch Process Not Found = %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>7</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ds.BatchProcessNotFoundException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="140" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Domain Service: Notification Connection Error = %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>7</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ds.NotificationConnectionException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="141" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Domain Service: Notification Failed! Reason = %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>7</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ds.NotificationFailedException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="142" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Domain Service: Notification Not Found! = %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>7</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ds.NotificationNotFoundException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="143" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>2</layer>
+				<message>Domain Service: Notification Template Error! = %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>7</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.ds.NotificationTemplateException</exceptionClass>
+			</AppAlarm>
+		</Domain>
+		<!-- Repository Service Template : RDBMS Database / BIG DATA / File Access -->
+		<Domain name="Repository Template" id="DB" trace="yes" criticality="3" connectorLogPriority="4,5,-1,-1">
+			<AppAlarm context="100" severity="1" connectorLogPriority="1,1,-1,-1">
+				<layer>3</layer>
+				<message>Repository Service Call initiated : %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>1</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="1" connectorLogPriority="1,1,-1,-1">
+				<layer>3</layer>
+				<message>Repository Service Call initiated : %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>2</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="1" connectorLogPriority="1,1,-1,-1">
+				<layer>3</layer>
+				<message>Repository Service Call initiated : %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>8</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="2" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Repository Service Call completed : %s Time Taken = %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>7</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Repository Service Call Success! : Class Name=%s | Method Name=%s </message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>7</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<!-- Transaction Management -->
+			<AppAlarm context="101" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Repository Tx Exception: Entity Found! Reason=%s</message>
+				<diag>
+				If the entity already exists, the EntityExistsException may be thrown when the persist operation is invoked, or the EntityExistsException or 
+				another PersistenceException may be thrown at flush or commit time.
+				</diag>
+				<solution>Duplicate Entity Found. Check the Unique Keys</solution>
+				<status>400</status>
+				<eventAction>3</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.db.EntityExistsException</exceptionClass>
+				<rootException>javax.persistence.EntityExistsException</rootException>
+			</AppAlarm>
+			<AppAlarm context="102" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Repository Tx Exception: Entity Not Found! Reason=%s</message>
+				<diag>
+				Entity Not Found. Either Primary Key is invalid or the Entity Active Status is set as false (marked as deleted).
+				</diag>
+				<solution>Entity Not Found. Check if the Entity is marked as Deleted or the query condition to retrieve this entity. </solution>
+				<status>400</status>
+				<eventAction>5</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.db.EntityNotFoundException</exceptionClass>
+				<rootException>javax.persistence.EntityNotFoundException</rootException>
+			</AppAlarm>
+			<AppAlarm context="103" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Repository Tx Exception: Lock Timeout! Reason=%s</message>
+				<diag>
+				Thrown by the persistence provider when an pessimistic locking conflict occurs that does not result in transaction rollback. This exception 
+				may be thrown as part of an API call, at, flush or at commit time. The current transaction, if one is active, will be not be marked for rollback.
+				</diag>
+				<solution>
+				Please try after some time.
+				</solution>
+				<status>500</status>
+				<eventAction>5</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.db.LockTimeoutException</exceptionClass>
+				<rootException>javax.persistence.LockTimeoutException</rootException>
+			</AppAlarm>
+			<AppAlarm context="104" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Repository Tx Exception: Non Unique Result! Reason=%s</message>
+				<diag>
+				Thrown by the persistence provider when Query.getSingleResult() or TypedQuery.getSingleResult() is executed on a query and there is more than one 
+				result from the query. This exception will not cause the current transaction, if one is active, to be marked for rollback.
+				</diag>
+				<solution>
+				</solution>
+				<status>400</status>
+				<eventAction>5</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.db.NonUniqueResultException</exceptionClass>
+				<rootException>javax.persistence.NonUniqueResultException</rootException>
+			</AppAlarm>
+			<AppAlarm context="105" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Repository Tx Exception: No Result! Reason=%s</message>
+				<diag>
+				Thrown by the persistence provider when Query.getSingleResult() or TypedQuery.getSingleResult()is executed on a query and there is no result to return. 
+				This exception will not cause the current transaction, if one is active, to be marked for rollback.
+				</diag>
+				<solution>
+				No Data Found. Check the Query Criteria.
+				</solution>
+				<status>400</status>
+				<eventAction>5</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.db.NoResultException</exceptionClass>
+				<rootException>javax.persistence.NoResultException</rootException>
+			</AppAlarm>
+			<AppAlarm context="106" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Repository Tx Exception: Optimistic Lock! Reason=%s</message>
+				<diag>
+				Thrown by the persistence provider when an optimistic locking conflict occurs. This exception may be thrown as part of an API call, a flush or at commit 
+				time. The current transaction, if one is active, will be marked for rollback.
+				</diag>
+				<solution>
+				</solution>
+				<status>500</status>
+				<eventAction>5</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.db.OptimisticLockException</exceptionClass>
+				<rootException>javax.persistence.OptimisticLockException</rootException>
+			</AppAlarm>
+			<AppAlarm context="107" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Repository Tx Exception: Pessimistic Lock! Reason=%s</message>
+				<diag>
+				Thrown by the persistence provider when an pessimistic locking conflict occurs. This exception may be thrown as part of an API call, a flush or at commit 
+				time. The current transaction, if one is active, will be marked for rollback.
+				</diag>
+				<solution>
+				</solution>
+				<status>500</status>
+				<eventAction>5</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.db.PessimisticLockException</exceptionClass>
+				<rootException>javax.persistence.PessimisticLockException</rootException>
+			</AppAlarm>
+			<AppAlarm context="108" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Repository Tx Exception: Query Timeout! Reason=%s</message>
+				<diag>
+				Thrown by the persistence provider when a query times out and only the statement is rolled back. The current transaction, if one is active, will be not 
+				be marked for rollback.
+				</diag>
+				<solution>
+				</solution>
+				<status>500</status>
+				<eventAction>5</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.db.QueryTimeoutException</exceptionClass>
+				<rootException>javax.persistence.QueryTimeoutException</rootException>
+			</AppAlarm>
+			<AppAlarm context="109" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Repository Tx Exception: Rollback! Reason=%s</message>
+				<diag>
+				Thrown by the persistence provider when commit() method call fails.
+				</diag>
+				<solution>
+				</solution>
+				<status>500</status>
+				<eventAction>5</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.db.RollbackException</exceptionClass>
+				<rootException>javax.persistence.RollbackException</rootException>
+			</AppAlarm>
+			<AppAlarm context="110" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Repository Tx Exception: Transaction Required! Reason=%s</message>
+				<diag>
+				Thrown by the persistence provider when a transaction is required but is not active.
+				</diag>
+				<solution>
+				</solution>
+				<status>500</status>
+				<eventAction>5</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.db.TransactionRequiredException</exceptionClass>
+				<rootException>javax.persistence.TransactionRequiredException</rootException>
+			</AppAlarm>
+			<!-- Repository Call Status -->
+			<AppAlarm context="151" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Repository Service Call Data Validation Failed! Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>7</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.db.RepositoryDataValidationFailedException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="151" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Repository Service Call Save Failed! Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>2</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.db.RepositoryWriteFailedException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="151" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Repository Service Call Update Failed! Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>1</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.db.RepositoryUpdateFailedException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="151" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Repository Service Call Delete Failed! Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>8</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.db.RepositoryDeleteFailedException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="190" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>3</layer>
+				<message>Data Source Connection Failed! Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>0</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.db.RepositoryDataSourceConnectionException</exceptionClass>
+			</AppAlarm>
+		</Domain>
+		<!-- EXTERNAL SERVICE TEMPLATE : REST / SOAP / JDBC / File Access -->
+		<Domain name="External Service Template" id="ES" trace="no" criticality="3" connectorLogPriority="4,5,-1,-1">
+			<AppAlarm context="100" severity="1" connectorLogPriority="1,1,-1,-1">
+				<layer>4</layer>
+				<message>External Service Call initiated : %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>1</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="2" connectorLogPriority="4,1,-1,-1">
+				<layer>4</layer>
+				<message>External Service Call completed : %s Time Taken = %s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>100</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="2" connectorLogPriority="4,1,-1,-1">
+				<layer>4</layer>
+				<message>External Service Call Status: Success! Class Name=% | Method Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>4</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="100" severity="2" connectorLogPriority="4,1,-1,-1">
+				<layer>4</layer>
+				<message>External Service Call Status: Success! Class Name=% | Method Name=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>200</status>
+				<eventAction>7</eventAction>
+				<exceptionClass></exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="101" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>4</layer>
+				<message>External Service Call Status: Failed due to bad request. Reason=%s</message>
+				<diag>
+				A runtime exception indicating a bad client request.
+				</diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>4</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.es.ExternalServiceConfigurationException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="101" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>4</layer>
+				<message>External Service Call Status: Failed due to bad user credentials. Reason=%s</message>
+				<diag>
+				Access denied due to bad login id or password.
+				</diag>
+				<solution>
+				Check if the Caps lock is on in your keyboard and usage of Upper Case and Lower Case letter in
+				login credentials.
+				</solution>
+				<status>401</status>
+				<eventAction>4</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.es.ExternalServiceAuthenticationFailedException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="101" severity="2" connectorLogPriority="4,1,-1,-1">
+				<layer>4</layer>
+				<message>External Service Call Status: Failed! Payment Required. Status=%s</message>
+				<diag>
+				This is a paid service. Your payment process failed to complete the request.
+				</diag>
+				<solution></solution>
+				<status>402</status>
+				<eventAction>4</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.es.ExternalServicePaymentRequiredException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="101" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>4</layer>
+				<message>External Service Call Status: Failed due to unauthorized resource. Reason=%s</message>
+				<diag>
+				A runtime exception indicating that an access to a resource requested by a client has been forbidden by the server.
+				</diag>
+				<solution></solution>
+				<status>403</status>
+				<eventAction>4</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.es.ExternalServiceAuthorizationFailedException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="102" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>4</layer>
+				<message>External Service Call Status: Failed! Method not allowed.  Reason=%s</message>
+				<diag>
+				A runtime exception indicating a resource requested by a client was not found on the server.
+				</diag>
+				<solution></solution>
+				<status>405</status>
+				<eventAction>4</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.es.ExternalServiceMethodNotAllowedException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="102" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>4</layer>
+				<message>External Service Call Status: Failed! Too many requests. Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>429</status>
+				<eventAction>4</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.es.ExternalServiceTooManyCallsException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="103" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>4</layer>
+				<message>External Service Call Status: Failed! Invalid Input Params. Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>4</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.es.ExternalServiceInvalidInputParamsException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="104" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>4</layer>
+				<message>External Service Call Status: Failed! Invalid Data returned. Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>4</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.es.ExternalServiceInvalidReturnTypeException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="190" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>4</layer>
+				<message>External Service Connection Failed! Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>500</status>
+				<eventAction>0</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.es.ExternalServiceCallFailedException</exceptionClass>
+			</AppAlarm>
+			<AppAlarm context="191" severity="5" connectorLogPriority="4,5,-1,-1">
+				<layer>4</layer>
+				<message>External Service Call Status: Failed! Call Timedout. Reason=%s</message>
+				<diag></diag>
+				<solution></solution>
+				<status>400</status>
+				<eventAction>4</eventAction>
+				<exceptionClass>com.spartan.pluggable.exception.layers.es.ExternalServiceTimeoutException</exceptionClass>
+			</AppAlarm>
+		</Domain>
+	</BoundedContext>>
+	<!-- DONT EDIT THESE SYSTEM ALARMS - END -->
+
+</AppFrameworkAlarms>

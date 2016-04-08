@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.app.server.service.salesboundedcontext.sales.UserAccessTestCase" tests="7" skipped="0" failures="0" errors="0" timestamp="2016-04-08T08:52:22" hostname="7621a196069f" time="21.453">
+  <properties/>
+  <testcase name="test1Save" classname="com.app.server.service.salesboundedcontext.sales.UserAccessTestCase" time="20.459"/>
+  <testcase name="test2Update" classname="com.app.server.service.salesboundedcontext.sales.UserAccessTestCase" time="0.071"/>
+  <testcase name="test3FindById" classname="com.app.server.service.salesboundedcontext.sales.UserAccessTestCase" time="0.006"/>
+  <testcase name="test3findByregion" classname="com.app.server.service.salesboundedcontext.sales.UserAccessTestCase" time="0.006"/>
+  <testcase name="test3findByuserId" classname="com.app.server.service.salesboundedcontext.sales.UserAccessTestCase" time="0.006"/>
+  <testcase name="test4Delete" classname="com.app.server.service.salesboundedcontext.sales.UserAccessTestCase" time="0.894"/>
+  <testcase name="test5NegativeTesting" classname="com.app.server.service.salesboundedcontext.sales.UserAccessTestCase" time="0.005"/>
+  <system-out><![CDATA[[EL Config]: metadata: 2016-04-08 08:52:28.158--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.shared.entity.ArtEntity] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.178--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.shared.entity.AuditPropertiesEntity] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.18--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.shared.entity.query.ArtQuery] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.182--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.salesboundedcontext.sales.Material] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.185--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.aaaboundedcontext.authentication.PasswordPolicy] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.186--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.organizationboundedcontext.location.Language] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.187--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.organizationboundedcontext.contacts.CommunicationData] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.187--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.aaaboundedcontext.authorization.Roles] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.194--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to many mapping element [field roleMenuBridge] is being defaulted to: class com.app.shared.aaaboundedcontext.authorization.RoleMenuBridge.
+[EL Config]: metadata: 2016-04-08 08:52:28.194--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.aaaboundedcontext.authentication.LoginSession] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.196--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.shared.entity.report.ArtChartTemplate] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.197--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.organizationboundedcontext.location.Country] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.198--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.sprinkler.entity.AuditPropertiesEntity] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.199--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.sprinkler.entity.ArtLogConfig] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.199--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to many mapping element [field logConnectors] is being defaulted to: class com.spartan.sprinkler.entity.ArtLogConnector.
+[EL Config]: metadata: 2016-04-08 08:52:28.2--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to many mapping element [field loggingProperties] is being defaulted to: class com.spartan.sprinkler.entity.ArtLoggingProperties.
+[EL Config]: metadata: 2016-04-08 08:52:28.2--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to many mapping element [field logSeverity] is being defaulted to: class com.spartan.sprinkler.entity.ArtLogSeverity.
+[EL Config]: metadata: 2016-04-08 08:52:28.201--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.healthmeter.entity.ArtHealthStatusConfiguration] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.201--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.sprinkler.entity.ArtLogModule] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.202--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to many mapping element [field appAlarm] is being defaulted to: class com.spartan.sprinkler.entity.ArtAppAlarm.
+[EL Config]: metadata: 2016-04-08 08:52:28.203--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.salesboundedcontext.sales.Brand] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.204--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.sprinkler.entity.ArtAppAlarm] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.207--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the many to one mapping element [field logmodule] is being defaulted to: class com.spartan.sprinkler.entity.ArtLogModule.
+[EL Config]: metadata: 2016-04-08 08:52:28.208--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.aaaboundedcontext.authentication.SessionData] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.209--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.salesboundedcontext.sales.Category] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.21--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.organizationboundedcontext.location.Timezone] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.211--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.shared.entity.report.ArtChartCategory] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.211--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to one mapping element [field chart_json_id] is being defaulted to: class com.athena.shared.entity.report.ArtChartJson.
+[EL Config]: metadata: 2016-04-08 08:52:28.212--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.salesboundedcontext.sales.CurrentMonth] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.213--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.shared.entity.report.ArtChartJson] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.213--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to one mapping element [field data_field_id] is being defaulted to: class com.athena.shared.entity.report.ArtChartDataFieldJson.
+[EL Config]: metadata: 2016-04-08 08:52:28.214--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.organizationboundedcontext.contacts.ContactType] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.215--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.sprinkler.entity.ArtLoggingProperties] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.215--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the many to one mapping element [field logConfig] is being defaulted to: class com.spartan.sprinkler.entity.ArtLogConfig.
+[EL Config]: metadata: 2016-04-08 08:52:28.216--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.healthmeter.entity.ZenHealthGauge] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.217--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.salesboundedcontext.sales.Distributor] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.218--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.shared.entity.report.ArtChartProperties] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.218--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.shared.entity.query.ArtUserLastStatus] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.219--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.organizationboundedcontext.location.Address] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.221--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.salesboundedcontext.sales.SalesData] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.222--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.aaaboundedcontext.authentication.Login] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.223--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to one mapping element [field coreContacts] is being defaulted to: class com.app.shared.organizationboundedcontext.contacts.CoreContacts.
+[EL Config]: metadata: 2016-04-08 08:52:28.224--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to one mapping element [field user] is being defaulted to: class com.app.shared.aaaboundedcontext.authentication.User.
+[EL Config]: metadata: 2016-04-08 08:52:28.224--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.organizationboundedcontext.location.State] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.225--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.healthmeter.entity.HealthSchedulerConfiguration] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.226--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.healthmeter.entity.ZenSchedulerHealth] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.229--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.salesboundedcontext.sales.Retailer] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.229--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.shared.entity.report.ArtChartType] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.23--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to one mapping element [field chart_id] is being defaulted to: class com.athena.shared.entity.report.ArtChartCategory.
+[EL Config]: metadata: 2016-04-08 08:52:28.23--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.organizationboundedcontext.location.City] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.231--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.salesboundedcontext.sales.SalesRegion] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.232--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.aaaboundedcontext.authentication.UserAccessLevel] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.233--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.shield.server.entity.AppSessionConfig] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.233--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.shared.entity.report.ArtChartPropLanguage] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.234--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to one mapping element [field property_id] is being defaulted to: class com.athena.shared.entity.report.ArtChartProperties.
+[EL Config]: metadata: 2016-04-08 08:52:28.234--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to one mapping element [field lang_id] is being defaulted to: class com.athena.shared.entity.report.ArtLangMaster.
+[EL Config]: metadata: 2016-04-08 08:52:28.235--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.salesboundedcontext.sales.UserAccess] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.235--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.shared.entity.report.ArtLangMaster] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.236--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.aaaboundedcontext.authentication.UserData] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.237--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to one mapping element [field user] is being defaulted to: class com.app.shared.aaaboundedcontext.authentication.User.
+[EL Config]: metadata: 2016-04-08 08:52:28.237--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.aaaboundedcontext.authentication.PassRecovery] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.238--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to one mapping element [field user] is being defaulted to: class com.app.shared.aaaboundedcontext.authentication.User.
+[EL Config]: metadata: 2016-04-08 08:52:28.238--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.sprinkler.entity.ArtLogConnector] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.239--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to many mapping element [field logConnectorAttributes] is being defaulted to: class com.spartan.sprinkler.entity.ArtLogConnectorAttributes.
+[EL Config]: metadata: 2016-04-08 08:52:28.239--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the many to one mapping element [field logConfig] is being defaulted to: class com.spartan.sprinkler.entity.ArtLogConfig.
+[EL Config]: metadata: 2016-04-08 08:52:28.24--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.organizationboundedcontext.contacts.CommunicationType] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.241--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.aaaboundedcontext.authentication.PasswordAlgo] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.242--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.organizationboundedcontext.contacts.Title] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.242--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.salesboundedcontext.sales.Channel] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.243--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.aaaboundedcontext.authentication.Question] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.243--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.aaaboundedcontext.authentication.User] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.244--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to one mapping element [field userData] is being defaulted to: class com.app.shared.aaaboundedcontext.authentication.UserData.
+[EL Config]: metadata: 2016-04-08 08:52:28.245--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to many mapping element [field passRecovery] is being defaulted to: class com.app.shared.aaaboundedcontext.authentication.PassRecovery.
+[EL Config]: metadata: 2016-04-08 08:52:28.245--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.healthmeter.entity.ZenHealthStatus] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.246--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.alarm.entities.ArtLogBoundedContext] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.246--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to many mapping element [field artLogDomain] is being defaulted to: class com.athena.alarm.entities.ArtLogDomain.
+[EL Config]: metadata: 2016-04-08 08:52:28.247--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.aaaboundedcontext.authentication.UserAccessDomain] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.248--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.alarm.entities.ArtLogDetails] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.248--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.alarm.entities.ArtLogAlarm] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.249--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.aaaboundedcontext.authorization.AppMenus] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.251--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.healthmeter.entity.ZenRequestDetails] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.252--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.healthmeter.entity.ArtHealthSchedulerConfiguration] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.253--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.shared.entity.report.ArtReportBuilderDetails] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.255--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.aaaboundedcontext.authorization.RoleMenuBridge] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.255--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to one mapping element [field roles] is being defaulted to: class com.app.shared.aaaboundedcontext.authorization.Roles.
+[EL Config]: metadata: 2016-04-08 08:52:28.256--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.organizationboundedcontext.contacts.CommunicationGroup] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.257--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.organizationboundedcontext.location.AddressType] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.257--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.healthmeter.entity.ZenHealthCounter] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.258--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.organizationboundedcontext.contacts.Gender] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.259--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.healthmeter.entity.ZenHealth] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.261--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.organizationboundedcontext.contacts.CoreContacts] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.261--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to one mapping element [field timezone] is being defaulted to: class com.app.shared.organizationboundedcontext.location.Timezone.
+[EL Config]: metadata: 2016-04-08 08:52:28.263--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to many mapping element [field address] is being defaulted to: class com.app.shared.organizationboundedcontext.location.Address.
+[EL Config]: metadata: 2016-04-08 08:52:28.263--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to many mapping element [field communicationData] is being defaulted to: class com.app.shared.organizationboundedcontext.contacts.CommunicationData.
+[EL Config]: metadata: 2016-04-08 08:52:28.264--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.shared.entity.report.ArtChartDataFieldJson] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.265--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.shared.entity.report.ArtReportUI] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.266--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.alarm.entities.ArtLogDomain] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.267--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the many to one mapping element [field artLogBoundedContext] is being defaulted to: class com.athena.alarm.entities.ArtLogBoundedContext.
+[EL Config]: metadata: 2016-04-08 08:52:28.267--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the one to many mapping element [field artLogAlarm] is being defaulted to: class com.athena.alarm.entities.ArtLogAlarm.
+[EL Config]: metadata: 2016-04-08 08:52:28.267--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.athena.server.bean.EntityBean] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.268--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.sprinkler.entity.ArtLogSeverity] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.268--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the many to one mapping element [field logConfig] is being defaulted to: class com.spartan.sprinkler.entity.ArtLogConfig.
+[EL Config]: metadata: 2016-04-08 08:52:28.269--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.sprinkler.entity.ArtLogConnectorAttributes] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.269--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The target entity (reference) class for the many to one mapping element [field logConnector] is being defaulted to: class com.spartan.sprinkler.entity.ArtLogConnector.
+[EL Config]: metadata: 2016-04-08 08:52:28.27--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.aaaboundedcontext.authorization.UserRoleBridge] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.271--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.healthmeter.shared.EntityAudit] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.272--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.SystemInfo] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.273--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.spartan.healthmeter.shared.SystemInfo] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.273--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The access type for the persistent class [class com.app.shared.EntityAudit] is set to [FIELD].
+[EL Config]: metadata: 2016-04-08 08:52:28.28--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.athena.shared.entity.query.ArtQuery] is being defaulted to: ArtQuery.
+[EL Config]: metadata: 2016-04-08 08:52:28.289--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.salesboundedcontext.sales.Material] is being defaulted to: Material.
+[EL Config]: metadata: 2016-04-08 08:52:28.293--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.aaaboundedcontext.authentication.PasswordPolicy] is being defaulted to: PasswordPolicy.
+[EL Config]: metadata: 2016-04-08 08:52:28.294--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.organizationboundedcontext.location.Language] is being defaulted to: Language.
+[EL Config]: metadata: 2016-04-08 08:52:28.294--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.organizationboundedcontext.contacts.CommunicationData] is being defaulted to: CommunicationData.
+[EL Config]: metadata: 2016-04-08 08:52:28.295--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.aaaboundedcontext.authorization.Roles] is being defaulted to: Roles.
+[EL Config]: metadata: 2016-04-08 08:52:28.296--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.aaaboundedcontext.authentication.LoginSession] is being defaulted to: LoginSession.
+[EL Config]: metadata: 2016-04-08 08:52:28.296--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.athena.shared.entity.report.ArtChartTemplate] is being defaulted to: ArtChartTemplate.
+[EL Config]: metadata: 2016-04-08 08:52:28.297--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.organizationboundedcontext.location.Country] is being defaulted to: Country.
+[EL Config]: metadata: 2016-04-08 08:52:28.298--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.spartan.sprinkler.entity.ArtLogConfig] is being defaulted to: ArtLogConfig.
+[EL Config]: metadata: 2016-04-08 08:52:28.298--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.spartan.healthmeter.entity.ArtHealthStatusConfiguration] is being defaulted to: ArtHealthStatusConfiguration.
+[EL Config]: metadata: 2016-04-08 08:52:28.299--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.spartan.sprinkler.entity.ArtLogModule] is being defaulted to: ArtLogModule.
+[EL Config]: metadata: 2016-04-08 08:52:28.3--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.salesboundedcontext.sales.Brand] is being defaulted to: Brand.
+[EL Config]: metadata: 2016-04-08 08:52:28.3--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.spartan.sprinkler.entity.ArtAppAlarm] is being defaulted to: ArtAppAlarm.
+[EL Config]: metadata: 2016-04-08 08:52:28.301--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.aaaboundedcontext.authentication.SessionData] is being defaulted to: SessionData.
+[EL Config]: metadata: 2016-04-08 08:52:28.302--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.salesboundedcontext.sales.Category] is being defaulted to: Category.
+[EL Config]: metadata: 2016-04-08 08:52:28.303--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.organizationboundedcontext.location.Timezone] is being defaulted to: Timezone.
+[EL Config]: metadata: 2016-04-08 08:52:28.303--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.athena.shared.entity.report.ArtChartCategory] is being defaulted to: ArtChartCategory.
+[EL Config]: metadata: 2016-04-08 08:52:28.304--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.salesboundedcontext.sales.CurrentMonth] is being defaulted to: CurrentMonth.
+[EL Config]: metadata: 2016-04-08 08:52:28.304--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.athena.shared.entity.report.ArtChartJson] is being defaulted to: ArtChartJson.
+[EL Config]: metadata: 2016-04-08 08:52:28.305--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.organizationboundedcontext.contacts.ContactType] is being defaulted to: ContactType.
+[EL Config]: metadata: 2016-04-08 08:52:28.306--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.spartan.sprinkler.entity.ArtLoggingProperties] is being defaulted to: ArtLoggingProperties.
+[EL Config]: metadata: 2016-04-08 08:52:28.306--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.spartan.healthmeter.entity.ZenHealthGauge] is being defaulted to: ZenHealthGauge.
+[EL Config]: metadata: 2016-04-08 08:52:28.307--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.salesboundedcontext.sales.Distributor] is being defaulted to: Distributor.
+[EL Config]: metadata: 2016-04-08 08:52:28.308--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.athena.shared.entity.report.ArtChartProperties] is being defaulted to: ArtChartProperties.
+[EL Config]: metadata: 2016-04-08 08:52:28.308--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.athena.shared.entity.query.ArtUserLastStatus] is being defaulted to: ArtUserLastStatus.
+[EL Config]: metadata: 2016-04-08 08:52:28.309--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.organizationboundedcontext.location.Address] is being defaulted to: Address.
+[EL Config]: metadata: 2016-04-08 08:52:28.31--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.salesboundedcontext.sales.SalesData] is being defaulted to: SalesData.
+[EL Config]: metadata: 2016-04-08 08:52:28.311--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.aaaboundedcontext.authentication.Login] is being defaulted to: Login.
+[EL Config]: metadata: 2016-04-08 08:52:28.311--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.organizationboundedcontext.location.State] is being defaulted to: State.
+[EL Config]: metadata: 2016-04-08 08:52:28.312--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.spartan.healthmeter.entity.HealthSchedulerConfiguration] is being defaulted to: HealthSchedulerConfiguration.
+[EL Config]: metadata: 2016-04-08 08:52:28.312--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.spartan.healthmeter.entity.ZenSchedulerHealth] is being defaulted to: ZenSchedulerHealth.
+[EL Config]: metadata: 2016-04-08 08:52:28.314--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.salesboundedcontext.sales.Retailer] is being defaulted to: Retailer.
+[EL Config]: metadata: 2016-04-08 08:52:28.314--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.athena.shared.entity.report.ArtChartType] is being defaulted to: ArtChartType.
+[EL Config]: metadata: 2016-04-08 08:52:28.315--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.organizationboundedcontext.location.City] is being defaulted to: City.
+[EL Config]: metadata: 2016-04-08 08:52:28.316--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.salesboundedcontext.sales.SalesRegion] is being defaulted to: SalesRegion.
+[EL Config]: metadata: 2016-04-08 08:52:28.316--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.aaaboundedcontext.authentication.UserAccessLevel] is being defaulted to: UserAccessLevel.
+[EL Config]: metadata: 2016-04-08 08:52:28.317--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.spartan.shield.server.entity.AppSessionConfig] is being defaulted to: AppSessionConfig.
+[EL Config]: metadata: 2016-04-08 08:52:28.317--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.athena.shared.entity.report.ArtChartPropLanguage] is being defaulted to: ArtChartPropLanguage.
+[EL Config]: metadata: 2016-04-08 08:52:28.318--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.salesboundedcontext.sales.UserAccess] is being defaulted to: UserAccess.
+[EL Config]: metadata: 2016-04-08 08:52:28.318--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.athena.shared.entity.report.ArtLangMaster] is being defaulted to: ArtLangMaster.
+[EL Config]: metadata: 2016-04-08 08:52:28.319--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.aaaboundedcontext.authentication.UserData] is being defaulted to: UserData.
+[EL Config]: metadata: 2016-04-08 08:52:28.319--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.aaaboundedcontext.authentication.PassRecovery] is being defaulted to: PassRecovery.
+[EL Config]: metadata: 2016-04-08 08:52:28.32--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.spartan.sprinkler.entity.ArtLogConnector] is being defaulted to: ArtLogConnector.
+[EL Config]: metadata: 2016-04-08 08:52:28.321--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.organizationboundedcontext.contacts.CommunicationType] is being defaulted to: CommunicationType.
+[EL Config]: metadata: 2016-04-08 08:52:28.321--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.aaaboundedcontext.authentication.PasswordAlgo] is being defaulted to: PasswordAlgo.
+[EL Config]: metadata: 2016-04-08 08:52:28.322--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.organizationboundedcontext.contacts.Title] is being defaulted to: Title.
+[EL Config]: metadata: 2016-04-08 08:52:28.322--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.salesboundedcontext.sales.Channel] is being defaulted to: Channel.
+[EL Config]: metadata: 2016-04-08 08:52:28.323--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.aaaboundedcontext.authentication.Question] is being defaulted to: Question.
+[EL Config]: metadata: 2016-04-08 08:52:28.323--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.aaaboundedcontext.authentication.User] is being defaulted to: User.
+[EL Config]: metadata: 2016-04-08 08:52:28.324--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.spartan.healthmeter.entity.ZenHealthStatus] is being defaulted to: ZenHealthStatus.
+[EL Config]: metadata: 2016-04-08 08:52:28.325--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.athena.alarm.entities.ArtLogBoundedContext] is being defaulted to: ArtLogBoundedContext.
+[EL Config]: metadata: 2016-04-08 08:52:28.325--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.aaaboundedcontext.authentication.UserAccessDomain] is being defaulted to: UserAccessDomain.
+[EL Config]: metadata: 2016-04-08 08:52:28.326--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.athena.alarm.entities.ArtLogDetails] is being defaulted to: ArtLogDetails.
+[EL Config]: metadata: 2016-04-08 08:52:28.326--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.athena.alarm.entities.ArtLogAlarm] is being defaulted to: ArtLogAlarm.
+[EL Config]: metadata: 2016-04-08 08:52:28.327--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.aaaboundedcontext.authorization.AppMenus] is being defaulted to: AppMenus.
+[EL Config]: metadata: 2016-04-08 08:52:28.328--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.spartan.healthmeter.entity.ZenRequestDetails] is being defaulted to: ZenRequestDetails.
+[EL Config]: metadata: 2016-04-08 08:52:28.328--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.spartan.healthmeter.entity.ArtHealthSchedulerConfiguration] is being defaulted to: ArtHealthSchedulerConfiguration.
+[EL Config]: metadata: 2016-04-08 08:52:28.329--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.athena.shared.entity.report.ArtReportBuilderDetails] is being defaulted to: ArtReportBuilderDetails.
+[EL Config]: metadata: 2016-04-08 08:52:28.33--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.aaaboundedcontext.authorization.RoleMenuBridge] is being defaulted to: RoleMenuBridge.
+[EL Config]: metadata: 2016-04-08 08:52:28.331--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.organizationboundedcontext.contacts.CommunicationGroup] is being defaulted to: CommunicationGroup.
+[EL Config]: metadata: 2016-04-08 08:52:28.331--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.organizationboundedcontext.location.AddressType] is being defaulted to: AddressType.
+[EL Config]: metadata: 2016-04-08 08:52:28.332--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.spartan.healthmeter.entity.ZenHealthCounter] is being defaulted to: ZenHealthCounter.
+[EL Config]: metadata: 2016-04-08 08:52:28.332--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.organizationboundedcontext.contacts.Gender] is being defaulted to: Gender.
+[EL Config]: metadata: 2016-04-08 08:52:28.333--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.spartan.healthmeter.entity.ZenHealth] is being defaulted to: ZenHealth.
+[EL Config]: metadata: 2016-04-08 08:52:28.335--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.organizationboundedcontext.contacts.CoreContacts] is being defaulted to: CoreContacts.
+[EL Config]: metadata: 2016-04-08 08:52:28.339--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.athena.shared.entity.report.ArtChartDataFieldJson] is being defaulted to: ArtChartDataFieldJson.
+[EL Config]: metadata: 2016-04-08 08:52:28.34--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.athena.shared.entity.report.ArtReportUI] is being defaulted to: ArtReportUI.
+[EL Config]: metadata: 2016-04-08 08:52:28.34--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.athena.alarm.entities.ArtLogDomain] is being defaulted to: ArtLogDomain.
+[EL Config]: metadata: 2016-04-08 08:52:28.341--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.athena.server.bean.EntityBean] is being defaulted to: EntityBean.
+[EL Config]: metadata: 2016-04-08 08:52:28.341--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The table name for entity [class com.athena.server.bean.EntityBean] is being defaulted to: ENTITYBEAN.
+[EL Config]: metadata: 2016-04-08 08:52:28.341--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The column name for element [id] is being defaulted to: ID.
+[EL Config]: metadata: 2016-04-08 08:52:28.341--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The column name for element [name] is being defaulted to: NAME.
+[EL Config]: metadata: 2016-04-08 08:52:28.341--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The column name for element [fields] is being defaulted to: FIELDS.
+[EL Config]: metadata: 2016-04-08 08:52:28.343--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.spartan.sprinkler.entity.ArtLogSeverity] is being defaulted to: ArtLogSeverity.
+[EL Config]: metadata: 2016-04-08 08:52:28.343--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.spartan.sprinkler.entity.ArtLogConnectorAttributes] is being defaulted to: ArtLogConnectorAttributes.
+[EL Config]: metadata: 2016-04-08 08:52:28.344--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--The alias name for the entity class [class com.app.shared.aaaboundedcontext.authorization.UserRoleBridge] is being defaulted to: UserRoleBridge.
+[EL Info]: 2016-04-08 08:52:28.957--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--EclipseLink, version: Eclipse Persistence Services - 2.5.1.v20130918-f2b9fc5
+[EL Fine]: connection: 2016-04-08 08:52:29.148--Thread(Thread[Test worker,5,main])--Detected database platform: org.eclipse.persistence.platform.database.MySQLPlatform
+[EL Config]: connection: 2016-04-08 08:52:29.158--ServerSession(1625862699)--Connection(664213848)--Thread(Thread[Test worker,5,main])--connecting(DatabaseLogin(
+	platform=>MySQLPlatform
+	user name=> "test8"
+	datasource URL=> "jdbc:mysql://localhost-MYSQL:3306/test8"
+))
+[EL Config]: connection: 2016-04-08 08:52:29.164--ServerSession(1625862699)--Connection(1825074368)--Thread(Thread[Test worker,5,main])--Connected: jdbc:mysql://localhost-MYSQL:3306/test8
+	User: test8@172.17.0.4
+	Database: MySQL  Version: 5.7.7-rc
+	Driver: MySQL Connector Java  Version: mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )
+[EL Config]: connection: 2016-04-08 08:52:29.165--ServerSession(1625862699)--Connection(1515972875)--Thread(Thread[Test worker,5,main])--connecting(DatabaseLogin(
+	platform=>MySQLPlatform
+	user name=> "test8"
+	datasource URL=> "jdbc:mysql://localhost-MYSQL:3306/test8"
+))
+[EL Config]: connection: 2016-04-08 08:52:29.176--ServerSession(1625862699)--Connection(1300373790)--Thread(Thread[Test worker,5,main])--Connected: jdbc:mysql://localhost-MYSQL:3306/test8
+	User: test8@172.17.0.4
+	Database: MySQL  Version: 5.7.7-rc
+	Driver: MySQL Connector Java  Version: mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )
+[EL Config]: connection: 2016-04-08 08:52:29.176--ServerSession(1625862699)--Connection(441213011)--Thread(Thread[Test worker,5,main])--connecting(DatabaseLogin(
+	platform=>MySQLPlatform
+	user name=> "test8"
+	datasource URL=> "jdbc:mysql://localhost-MYSQL:3306/test8"
+))
+[EL Config]: connection: 2016-04-08 08:52:29.181--ServerSession(1625862699)--Connection(2106198338)--Thread(Thread[Test worker,5,main])--Connected: jdbc:mysql://localhost-MYSQL:3306/test8
+	User: test8@172.17.0.4
+	Database: MySQL  Version: 5.7.7-rc
+	Driver: MySQL Connector Java  Version: mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )
+[EL Config]: connection: 2016-04-08 08:52:29.182--ServerSession(1625862699)--Connection(1902513265)--Thread(Thread[Test worker,5,main])--connecting(DatabaseLogin(
+	platform=>MySQLPlatform
+	user name=> "test8"
+	datasource URL=> "jdbc:mysql://localhost-MYSQL:3306/test8"
+))
+[EL Config]: connection: 2016-04-08 08:52:29.187--ServerSession(1625862699)--Connection(848028278)--Thread(Thread[Test worker,5,main])--Connected: jdbc:mysql://localhost-MYSQL:3306/test8
+	User: test8@172.17.0.4
+	Database: MySQL  Version: 5.7.7-rc
+	Driver: MySQL Connector Java  Version: mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )
+[EL Config]: connection: 2016-04-08 08:52:29.187--ServerSession(1625862699)--Connection(2109786854)--Thread(Thread[Test worker,5,main])--connecting(DatabaseLogin(
+	platform=>MySQLPlatform
+	user name=> "test8"
+	datasource URL=> "jdbc:mysql://localhost-MYSQL:3306/test8"
+))
+[EL Config]: connection: 2016-04-08 08:52:29.193--ServerSession(1625862699)--Connection(1805600112)--Thread(Thread[Test worker,5,main])--Connected: jdbc:mysql://localhost-MYSQL:3306/test8
+	User: test8@172.17.0.4
+	Database: MySQL  Version: 5.7.7-rc
+	Driver: MySQL Connector Java  Version: mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )
+[EL Config]: connection: 2016-04-08 08:52:29.194--ServerSession(1625862699)--Connection(629666627)--Thread(Thread[Test worker,5,main])--connecting(DatabaseLogin(
+	platform=>MySQLPlatform
+	user name=> "test8"
+	datasource URL=> "jdbc:mysql://localhost-MYSQL:3306/test8"
+))
+[EL Config]: connection: 2016-04-08 08:52:29.199--ServerSession(1625862699)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--Connected: jdbc:mysql://localhost-MYSQL:3306/test8
+	User: test8@172.17.0.4
+	Database: MySQL  Version: 5.7.7-rc
+	Driver: MySQL Connector Java  Version: mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )
+[EL Config]: connection: 2016-04-08 08:52:29.199--ServerSession(1625862699)--Connection(987379474)--Thread(Thread[Test worker,5,main])--connecting(DatabaseLogin(
+	platform=>MySQLPlatform
+	user name=> "test8"
+	datasource URL=> "jdbc:mysql://localhost-MYSQL:3306/test8"
+))
+[EL Config]: connection: 2016-04-08 08:52:29.205--ServerSession(1625862699)--Connection(885603320)--Thread(Thread[Test worker,5,main])--Connected: jdbc:mysql://localhost-MYSQL:3306/test8
+	User: test8@172.17.0.4
+	Database: MySQL  Version: 5.7.7-rc
+	Driver: MySQL Connector Java  Version: mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )
+[EL Config]: connection: 2016-04-08 08:52:29.205--ServerSession(1625862699)--Connection(125841883)--Thread(Thread[Test worker,5,main])--connecting(DatabaseLogin(
+	platform=>MySQLPlatform
+	user name=> "test8"
+	datasource URL=> "jdbc:mysql://localhost-MYSQL:3306/test8"
+))
+[EL Config]: connection: 2016-04-08 08:52:29.21--ServerSession(1625862699)--Connection(765911686)--Thread(Thread[Test worker,5,main])--Connected: jdbc:mysql://localhost-MYSQL:3306/test8
+	User: test8@172.17.0.4
+	Database: MySQL  Version: 5.7.7-rc
+	Driver: MySQL Connector Java  Version: mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )
+[EL Config]: connection: 2016-04-08 08:52:29.21--ServerSession(1625862699)--Connection(660726484)--Thread(Thread[Test worker,5,main])--connecting(DatabaseLogin(
+	platform=>MySQLPlatform
+	user name=> "test8"
+	datasource URL=> "jdbc:mysql://localhost-MYSQL:3306/test8"
+))
+[EL Config]: connection: 2016-04-08 08:52:29.215--ServerSession(1625862699)--Connection(1214908439)--Thread(Thread[Test worker,5,main])--Connected: jdbc:mysql://localhost-MYSQL:3306/test8
+	User: test8@172.17.0.4
+	Database: MySQL  Version: 5.7.7-rc
+	Driver: MySQL Connector Java  Version: mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )
+[EL Config]: connection: 2016-04-08 08:52:29.216--ServerSession(1625862699)--Connection(691618597)--Thread(Thread[Test worker,5,main])--connecting(DatabaseLogin(
+	platform=>MySQLPlatform
+	user name=> "test8"
+	datasource URL=> "jdbc:mysql://localhost-MYSQL:3306/test8"
+))
+[EL Config]: connection: 2016-04-08 08:52:29.221--ServerSession(1625862699)--Connection(572455547)--Thread(Thread[Test worker,5,main])--Connected: jdbc:mysql://localhost-MYSQL:3306/test8
+	User: test8@172.17.0.4
+	Database: MySQL  Version: 5.7.7-rc
+	Driver: MySQL Connector Java  Version: mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )
+[EL Config]: connection: 2016-04-08 08:52:29.221--ServerSession(1625862699)--Connection(533639869)--Thread(Thread[Test worker,5,main])--connecting(DatabaseLogin(
+	platform=>MySQLPlatform
+	user name=> "test8"
+	datasource URL=> "jdbc:mysql://localhost-MYSQL:3306/test8"
+))
+[EL Config]: connection: 2016-04-08 08:52:29.226--ServerSession(1625862699)--Connection(1675298984)--Thread(Thread[Test worker,5,main])--Connected: jdbc:mysql://localhost-MYSQL:3306/test8
+	User: test8@172.17.0.4
+	Database: MySQL  Version: 5.7.7-rc
+	Driver: MySQL Connector Java  Version: mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )
+[EL Config]: connection: 2016-04-08 08:52:29.226--ServerSession(1625862699)--Connection(1091928271)--Thread(Thread[Test worker,5,main])--connecting(DatabaseLogin(
+	platform=>MySQLPlatform
+	user name=> "test8"
+	datasource URL=> "jdbc:mysql://localhost-MYSQL:3306/test8"
+))
+[EL Config]: connection: 2016-04-08 08:52:29.231--ServerSession(1625862699)--Connection(843781654)--Thread(Thread[Test worker,5,main])--Connected: jdbc:mysql://localhost-MYSQL:3306/test8
+	User: test8@172.17.0.4
+	Database: MySQL  Version: 5.7.7-rc
+	Driver: MySQL Connector Java  Version: mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )
+[EL Config]: connection: 2016-04-08 08:52:29.232--ServerSession(1625862699)--Connection(1603737637)--Thread(Thread[Test worker,5,main])--connecting(DatabaseLogin(
+	platform=>MySQLPlatform
+	user name=> "test8"
+	datasource URL=> "jdbc:mysql://localhost-MYSQL:3306/test8"
+))
+[EL Config]: connection: 2016-04-08 08:52:29.236--ServerSession(1625862699)--Connection(855579520)--Thread(Thread[Test worker,5,main])--Connected: jdbc:mysql://localhost-MYSQL:3306/test8
+	User: test8@172.17.0.4
+	Database: MySQL  Version: 5.7.7-rc
+	Driver: MySQL Connector Java  Version: mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )
+[EL Config]: connection: 2016-04-08 08:52:29.237--ServerSession(1625862699)--Connection(174492328)--Thread(Thread[Test worker,5,main])--connecting(DatabaseLogin(
+	platform=>MySQLPlatform
+	user name=> "test8"
+	datasource URL=> "jdbc:mysql://localhost-MYSQL:3306/test8"
+))
+[EL Config]: connection: 2016-04-08 08:52:29.242--ServerSession(1625862699)--Connection(1155728675)--Thread(Thread[Test worker,5,main])--Connected: jdbc:mysql://localhost-MYSQL:3306/test8
+	User: test8@172.17.0.4
+	Database: MySQL  Version: 5.7.7-rc
+	Driver: MySQL Connector Java  Version: mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )
+[EL Config]: connection: 2016-04-08 08:52:29.242--ServerSession(1625862699)--Connection(342253610)--Thread(Thread[Test worker,5,main])--connecting(DatabaseLogin(
+	platform=>MySQLPlatform
+	user name=> "test8"
+	datasource URL=> "jdbc:mysql://localhost-MYSQL:3306/test8"
+))
+[EL Config]: connection: 2016-04-08 08:52:29.248--ServerSession(1625862699)--Connection(338455421)--Thread(Thread[Test worker,5,main])--Connected: jdbc:mysql://localhost-MYSQL:3306/test8
+	User: test8@172.17.0.4
+	Database: MySQL  Version: 5.7.7-rc
+	Driver: MySQL Connector Java  Version: mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )
+[EL Config]: connection: 2016-04-08 08:52:29.248--ServerSession(1625862699)--Connection(338455421)--Thread(Thread[Test worker,5,main])--disconnect
+[EL Warning]: metadata: 2016-04-08 08:52:29.256--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--Reverting the lazy setting on the OneToOne or ManyToOne attribute [user] for the entity class [class com.app.shared.aaaboundedcontext.authentication.UserData] since weaving was not enabled or did not occur.
+[EL Warning]: metadata: 2016-04-08 08:52:29.259--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--Reverting the lazy setting on the OneToOne or ManyToOne attribute [timezone] for the entity class [class com.app.shared.organizationboundedcontext.contacts.CoreContacts] since weaving was not enabled or did not occur.
+[EL Warning]: metadata: 2016-04-08 08:52:29.26--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--Reverting the lazy setting on the OneToOne or ManyToOne attribute [user] for the entity class [class com.app.shared.aaaboundedcontext.authentication.PassRecovery] since weaving was not enabled or did not occur.
+[EL Warning]: metadata: 2016-04-08 08:52:29.264--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--Reverting the lazy setting on the OneToOne or ManyToOne attribute [userData] for the entity class [class com.app.shared.aaaboundedcontext.authentication.User] since weaving was not enabled or did not occur.
+[EL Warning]: metadata: 2016-04-08 08:52:29.264--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--Reverting the lazy setting on the OneToOne or ManyToOne attribute [coreContacts] for the entity class [class com.app.shared.aaaboundedcontext.authentication.Login] since weaving was not enabled or did not occur.
+[EL Warning]: metadata: 2016-04-08 08:52:29.265--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--Reverting the lazy setting on the OneToOne or ManyToOne attribute [user] for the entity class [class com.app.shared.aaaboundedcontext.authentication.Login] since weaving was not enabled or did not occur.
+[EL Info]: connection: 2016-04-08 08:52:29.461--ServerSession(1625862699)--Thread(Thread[Test worker,5,main])--file:/home/applifire/workspace/test8/build/resources/main_test8 login successful
+[EL Fine]: sql: 2016-04-08 08:52:36.816--ClientSession(1593084254)--Connection(1155728675)--Thread(Thread[Test worker,5,main])--SELECT query_id, active_status, app_creator_id, created_by, created_date, hidden_name, jpql_query, name, project_id, project_version_id, query_json, query_type, sql_query, updated_by, updated_date, user_access, version_id FROM art_query WHERE ((active_status = ?) AND (sql_query IS NULL))
+	bind => [true]
+[EL Config]: connection: 2016-04-08 08:52:36.832--ServerSession(1625862699)--Connection(1155728675)--Thread(Thread[Test worker,5,main])--disconnect
+[EL Fine]: sql: 2016-04-08 08:52:36.838--ClientSession(1809012714)--Connection(855579520)--Thread(Thread[Test worker,5,main])--SELECT query_id, active_status, app_creator_id, created_by, created_date, hidden_name, jpql_query, name, project_id, project_version_id, query_json, query_type, sql_query, updated_by, updated_date, user_access, version_id FROM art_query WHERE (query_id = ?)
+	bind => [108B9269-9525-4EB5-A9C7-A6FACCCB1E42]
+[EL Fine]: sql: 2016-04-08 08:52:36.841--ClientSession(1809012714)--Connection(855579520)--Thread(Thread[Test worker,5,main])--UPDATE art_query SET sql_query = ? WHERE (query_id = ?)
+	bind => [SELECT dataId, appSessionId, booleanValue, customerId, dataType, dateTimeValue, jsonValue, numberValue, sessionKey, stringValue, userId, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode FROM ast_SessionData_T WHERE (((activeStatus = ?) AND (appSessionId = ?)) AND (sessionKey = ?)), 108B9269-9525-4EB5-A9C7-A6FACCCB1E42]
+[EL Config]: connection: 2016-04-08 08:52:36.901--ServerSession(1625862699)--Connection(855579520)--Thread(Thread[Test worker,5,main])--disconnect
+[EL Fine]: sql: 2016-04-08 08:52:36.904--ClientSession(619339170)--Connection(843781654)--Thread(Thread[Test worker,5,main])--SELECT query_id, active_status, app_creator_id, created_by, created_date, hidden_name, jpql_query, name, project_id, project_version_id, query_json, query_type, sql_query, updated_by, updated_date, user_access, version_id FROM art_query WHERE (query_id = ?)
+	bind => [2644BFD5-6FC7-41B0-A157-B3B30F140449]
+[EL Fine]: sql: 2016-04-08 08:52:36.905--ClientSession(619339170)--Connection(843781654)--Thread(Thread[Test worker,5,main])--UPDATE art_query SET sql_query = ? WHERE (query_id = ?)
+	bind => [SELECT t0.loginPk, t0.failedLoginAttempts, t0.loginId, t0.serverAuthImage, t0.serverAuthText, t0.versionId, t0.createdBy, t0.createdDate, t0.updatedBy, t0.updatedDate, t0.activeStatus, t0.txnAccessCode, t0.contactId, t0.userId FROM ast_Login_T t0, ast_User_T t1 WHERE (((t0.activeStatus = ?) AND t1.userId IN (SELECT t2.userId FROM ast_UserRoleBridge_T t2)) AND (t1.userId = t0.userId)), 2644BFD5-6FC7-41B0-A157-B3B30F140449]
+[EL Config]: connection: 2016-04-08 08:52:36.956--ServerSession(1625862699)--Connection(843781654)--Thread(Thread[Test worker,5,main])--disconnect
+[EL Fine]: sql: 2016-04-08 08:52:36.962--ClientSession(2074116578)--Connection(1675298984)--Thread(Thread[Test worker,5,main])--SELECT query_id, active_status, app_creator_id, created_by, created_date, hidden_name, jpql_query, name, project_id, project_version_id, query_json, query_type, sql_query, updated_by, updated_date, user_access, version_id FROM art_query WHERE (query_id = ?)
+	bind => [2BD9132E-8A6E-4F55-91E9-8F6B3CCF8441]
+[EL Fine]: sql: 2016-04-08 08:52:36.964--ClientSession(2074116578)--Connection(1675298984)--Thread(Thread[Test worker,5,main])--UPDATE art_query SET sql_query = ? WHERE (query_id = ?)
+	bind => [SELECT t0.regionname FROM ast_SalesRegion_M t0, ast_UserAccess_M t1 WHERE ((t1.region = t0.regioncode) AND (t1.userId = ?)), 2BD9132E-8A6E-4F55-91E9-8F6B3CCF8441]
+[EL Config]: connection: 2016-04-08 08:52:37.012--ServerSession(1625862699)--Connection(1675298984)--Thread(Thread[Test worker,5,main])--disconnect
+[EL Fine]: sql: 2016-04-08 08:52:37.019--ClientSession(1781169393)--Connection(572455547)--Thread(Thread[Test worker,5,main])--SELECT query_id, active_status, app_creator_id, created_by, created_date, hidden_name, jpql_query, name, project_id, project_version_id, query_json, query_type, sql_query, updated_by, updated_date, user_access, version_id FROM art_query WHERE (query_id = ?)
+	bind => [40BA03FE-68CA-4452-BA60-3131C9C21514]
+[EL Fine]: sql: 2016-04-08 08:52:37.022--ClientSession(1781169393)--Connection(572455547)--Thread(Thread[Test worker,5,main])--UPDATE art_query SET sql_query = ? WHERE (query_id = ?)
+	bind => [SELECT t0.channel, t1.category, t2.branddesc, t3.materialdesc, t4.regionname, t5.distributorname, t5.longitude, t5.lattitude, t6.updatedDate, t6.salesdate, t6.salesyear, t6.salesinvoicenbr, t6.salesqty, t6.netsalesamt, t6.grosssalesamt, t7.monthname, t7.monthid, t8.retailername FROM ast_Retailer_M t8, ast_CurrentMonth_M t7, ast_SalesData_T t6, ast_Distributor_M t5, ast_SalesRegion_M t4, ast_Material_M t3, ast_Brand_M t2, ast_Category_M t1, ast_Channel_M t0 WHERE (((((((((t4.regioncode = t5.regioncode) AND (t5.distributorcode = t8.distributorcode)) AND (t1.categoryId = t2.categoryId)) AND (t8.retailercode = t6.reatilercode)) AND (t2.brandcode = t3.brandcode)) AND (t0.channelId = t6.channelId)) AND (t7.monthid = t6.salesmonth)) AND (t1.categoryId = t6.category)) AND (t3.materialcode = t6.materialcode)) ORDER BY t7.monthid, 40BA03FE-68CA-4452-BA60-3131C9C21514]
+[EL Config]: connection: 2016-04-08 08:52:37.067--ServerSession(1625862699)--Connection(572455547)--Thread(Thread[Test worker,5,main])--disconnect
+[EL Fine]: sql: 2016-04-08 08:52:37.074--ClientSession(251469629)--Connection(1214908439)--Thread(Thread[Test worker,5,main])--SELECT query_id, active_status, app_creator_id, created_by, created_date, hidden_name, jpql_query, name, project_id, project_version_id, query_json, query_type, sql_query, updated_by, updated_date, user_access, version_id FROM art_query WHERE (query_id = ?)
+	bind => [4DB2F593-5200-4EC0-8771-DCE4467753F8]
+[EL Fine]: sql: 2016-04-08 08:52:37.076--ClientSession(251469629)--Connection(1214908439)--Thread(Thread[Test worker,5,main])--UPDATE art_query SET sql_query = ? WHERE (query_id = ?)
+	bind => [SELECT healthId, scheduledDateTime, serverInstanceId, serverIpAddress, ROUND((? - ((usedSpace / totalSpace) * ?))), ROUND(((usedSpace / totalSpace) * ?)), ROUND(((totalSpace / ?) / ?)), status FROM zen_health_status ORDER BY scheduledDateTime DESC, 4DB2F593-5200-4EC0-8771-DCE4467753F8]
+[EL Config]: connection: 2016-04-08 08:52:37.123--ServerSession(1625862699)--Connection(1214908439)--Thread(Thread[Test worker,5,main])--disconnect
+[EL Fine]: sql: 2016-04-08 08:52:37.129--ClientSession(1194205225)--Connection(765911686)--Thread(Thread[Test worker,5,main])--SELECT query_id, active_status, app_creator_id, created_by, created_date, hidden_name, jpql_query, name, project_id, project_version_id, query_json, query_type, sql_query, updated_by, updated_date, user_access, version_id FROM art_query WHERE (query_id = ?)
+	bind => [521B1017-84F8-4E9E-B3FF-757BF8D3C381]
+[EL Fine]: sql: 2016-04-08 08:52:37.13--ClientSession(1194205225)--Connection(765911686)--Thread(Thread[Test worker,5,main])--UPDATE art_query SET sql_query = ? WHERE (query_id = ?)
+	bind => [SELECT t0.regionname, t1.retailername, t2.distributorname, t2.longitude, t2.lattitude, t3.monthid, t3.monthname, t4.autoid, t4.channelId, t4.salesdate, t4.salesyear, t4.salesinvoicenbr, t4.materialdesc, t4.branddesc, t4.salesqty, t4.netsalesamt, t4.grosssalesamt, t4.materialcode, t4.brandcode, t4.category, t4.updatedDate FROM ast_SalesData_T t4, ast_CurrentMonth_M t3, ast_Distributor_M t2, ast_Retailer_M t1, ast_SalesRegion_M t0 WHERE (((((((((t4.reatilercode = t1.retailercode) AND (t1.distributorcode = t2.distributorcode)) AND (t2.regioncode = t0.regioncode)) AND (t4.salesmonth = t3.monthid)) AND t0.regionname LIKE ?) AND t1.retailername LIKE ?) AND t2.distributorname LIKE ?) AND (t4.salesyear = ?)) AND t3.monthname LIKE ?) ORDER BY t3.monthid, 521B1017-84F8-4E9E-B3FF-757BF8D3C381]
+[EL Config]: connection: 2016-04-08 08:52:37.167--ServerSession(1625862699)--Connection(765911686)--Thread(Thread[Test worker,5,main])--disconnect
+[EL Fine]: sql: 2016-04-08 08:52:37.17--ClientSession(1302672638)--Connection(885603320)--Thread(Thread[Test worker,5,main])--SELECT query_id, active_status, app_creator_id, created_by, created_date, hidden_name, jpql_query, name, project_id, project_version_id, query_json, query_type, sql_query, updated_by, updated_date, user_access, version_id FROM art_query WHERE (query_id = ?)
+	bind => [60CF5374-A702-486B-9AF8-649554CBBBF6]
+[EL Fine]: sql: 2016-04-08 08:52:37.172--ClientSession(1302672638)--Connection(885603320)--Thread(Thread[Test worker,5,main])--UPDATE art_query SET sql_query = ? WHERE (query_id = ?)
+	bind => [DELETE FROM ast_SessionData_T WHERE ((activeStatus = ?) AND (appSessionId = ?)), 60CF5374-A702-486B-9AF8-649554CBBBF6]
+[EL Config]: connection: 2016-04-08 08:52:37.212--ServerSession(1625862699)--Connection(885603320)--Thread(Thread[Test worker,5,main])--disconnect
+[EL Fine]: sql: 2016-04-08 08:52:37.226--ClientSession(155860811)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT query_id, active_status, app_creator_id, created_by, created_date, hidden_name, jpql_query, name, project_id, project_version_id, query_json, query_type, sql_query, updated_by, updated_date, user_access, version_id FROM art_query WHERE (query_id = ?)
+	bind => [C91D9F60-B3CD-416C-A305-4A4C0FB3542F]
+[EL Fine]: sql: 2016-04-08 08:52:37.229--ClientSession(155860811)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--UPDATE art_query SET sql_query = ? WHERE (query_id = ?)
+	bind => [SELECT t0.regionname, t1.monthid, t1.monthname, t2.distributorname, t2.longitude, t2.lattitude, t3.retailername, t4.autoid, t4.channelId, t4.salesdate, t4.salesmonth, t4.salesyear, t4.salesinvoicenbr, t4.branddesc, t4.salesqty, t4.netsalesamt, t4.grosssalesamt, t4.materialcode, t4.brandcode, t4.category, t4.updatedDate FROM ast_SalesData_T t4, ast_Retailer_M t3, ast_Distributor_M t2, ast_CurrentMonth_M t1, ast_SalesRegion_M t0 WHERE ((((((t4.salesmonth = t1.monthid) AND (t3.distributorcode = t2.distributorcode)) AND (t2.regioncode = t0.regioncode)) AND (t4.reatilercode = t3.retailercode)) AND (t4.salesdate >= ?)) AND (t4.salesdate <= ?)) ORDER BY t1.monthid, C91D9F60-B3CD-416C-A305-4A4C0FB3542F]
+[EL Fine]: sql: 2016-04-08 08:52:37.271--ClientSession(748822337)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT query_id, active_status, app_creator_id, created_by, created_date, hidden_name, jpql_query, name, project_id, project_version_id, query_json, query_type, sql_query, updated_by, updated_date, user_access, version_id FROM art_query WHERE (query_id = ?)
+	bind => [E8AAF67C-A338-4002-A86C-EAC77FA1DE9C]
+[EL Fine]: sql: 2016-04-08 08:52:37.276--ClientSession(748822337)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--UPDATE art_query SET sql_query = ? WHERE (query_id = ?)
+	bind => [SELECT dataId, appSessionId, booleanValue, customerId, dataType, dateTimeValue, jsonValue, numberValue, sessionKey, stringValue, userId, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode FROM ast_SessionData_T WHERE ((activeStatus = ?) AND (appSessionId = ?)), E8AAF67C-A338-4002-A86C-EAC77FA1DE9C]
+[EL Fine]: sql: 2016-04-08 08:52:37.333--ClientSession(830855250)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT query_id, active_status, app_creator_id, created_by, created_date, hidden_name, jpql_query, name, project_id, project_version_id, query_json, query_type, sql_query, updated_by, updated_date, user_access, version_id FROM art_query WHERE (query_id = ?)
+	bind => [F95B6104-73E2-41CA-AFA0-7E6C0BCD31C9]
+[EL Fine]: sql: 2016-04-08 08:52:37.335--ClientSession(830855250)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--UPDATE art_query SET sql_query = ? WHERE (query_id = ?)
+	bind => [SELECT CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(t0.firstName, ?), t2.ipAddress), ?), t2.requestId), ?), t2.appSessionId), t2.requestId, t2.className, t2.requestTime, t2.requestMethod, t2.httpStatus, t2.returnStatus, t2.executionTime, t2.methodName, t2.startTime, t2.endTime, t2.typeofClass, t2.callSeqId, t2.exceptionId, t2.userId, t2.appSessionId FROM ast_User_T t3, zen_request_details t2, ast_Login_T t1, ast_CoreContacts_T t0 WHERE ((((t3.userId = t2.userId) AND (t2.requestTime >= ?)) AND (t2.requestTime <= ?)) AND ((t3.userId = t1.userId) AND (t0.contactId = t1.contactId))) ORDER BY t2.requestTime DESC, t2.requestId, t2.callSeqId ASC, F95B6104-73E2-41CA-AFA0-7E6C0BCD31C9]
+[EL Fine]: sql: 2016-04-08 08:52:37.381--ClientSession(1459504539)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT query_id, active_status, app_creator_id, created_by, created_date, hidden_name, jpql_query, name, project_id, project_version_id, query_json, query_type, sql_query, updated_by, updated_date, user_access, version_id FROM art_query WHERE (query_id = ?)
+	bind => [F9B35CA9-E47C-470A-A490-D9123E353A12]
+[EL Fine]: sql: 2016-04-08 08:52:37.383--ClientSession(1459504539)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--UPDATE art_query SET sql_query = ? WHERE (query_id = ?)
+	bind => [SELECT t0.loginPk, t0.failedLoginAttempts, t0.loginId, t0.serverAuthImage, t0.serverAuthText, t0.versionId, t0.createdBy, t0.createdDate, t0.updatedBy, t0.updatedDate, t0.activeStatus, t0.txnAccessCode, t0.contactId, t0.userId FROM ast_Login_T t0, ast_User_T t1 WHERE (((t0.activeStatus = ?) AND t1.userId NOT IN (SELECT t2.userId FROM ast_UserRoleBridge_T t2)) AND (t1.userId = t0.userId)), F9B35CA9-E47C-470A-A490-D9123E353A12]
+[EL Fine]: sql: 2016-04-08 08:52:37.43--ClientSession(1272612814)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT query_id, active_status, app_creator_id, created_by, created_date, hidden_name, jpql_query, name, project_id, project_version_id, query_json, query_type, sql_query, updated_by, updated_date, user_access, version_id FROM art_query WHERE (query_id = ?)
+	bind => [FE2A3B5A-310A-4E35-954C-A86997EBC8BC]
+[EL Fine]: sql: 2016-04-08 08:52:37.431--ClientSession(1272612814)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--UPDATE art_query SET sql_query = ? WHERE (query_id = ?)
+	bind => [SELECT monitorId, scheduledDateTime, serverInstanceId, serverIpAddress, totalClass, classLoaded, classUnloaded, gcCollectionTime, gcMemoryName, ((nonHeapCommitted / ?) / ?), ((nonHeapUsed / ?) / ?), ((heapCommitted / ?) / ?), ((maxMemory / ?) / ?), (? - ((usedMemory / totalMemory) * ?)), ((heapUsed / ?) / ?), ((totalMemory / ?) / ?), startTime, upTime, cpuTime, ((freePhysicalSize / ?) / ?), ((totalPhysicalMemorySize / ?) / ?), cpuLoadTime, ROUND(((freeSwapSize / ?) / ?)), systemLoadAverage, ROUND(((totalSwapSize / ?) / ?)), availableProcessor, totalThread, threadPeakCount, threadStartedCount, threadDaemonCount, threadCpuTime, threadUserTime, cpuLoad, ((usedMemory / totalMemory) * ?), ((usedSwapSize / ?) / ?), ((usedPhysicalMemory / ?) / ?) FROM zen_health ORDER BY scheduledDateTime DESC, FE2A3B5A-310A-4E35-954C-A86997EBC8BC]
+[EL Fine]: sql: 2016-04-08 08:52:42.382--ClientSession(397776308)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--INSERT INTO ast_UserAccessDomain_M (userAccessDomainId, domainDescription, domainHelp, domainIcon, domainName, userAccessDomain, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+	bind => [F7E5BAEE-F435-498A-8772-745C343D558A, Ru2shB4MrYMVpZ0abE64Ry1pC384CTRhAVjVTZkfP2u91pVccg, BceNV1VGuGwRGyKAVcdibgeiAwijPqLUxtkiFXlYy8RIoQQuRu, kZ4Ny22w7LqzJ4qfS36vg9VRN73uKH1e2lXReRgY0NGwK59BMA, 1rkvvrwtZqQbtUFqVp2a1S0LwaMh6VWoDxbtkVschJ12zkE3up, 50512, 1, AAAAA, 2016-04-08 08:52:42.341, null, 2016-04-08 08:52:42.341, 1, 51000]
+[EL Fine]: sql: 2016-04-08 08:52:42.45--ClientSession(1311827519)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--INSERT INTO ast_UserAccessLevel_M (userAccessLevelId, levelDescription, levelHelp, levelIcon, levelName, userAccessLevel, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+	bind => [15B7A04C-A970-4BE1-AD84-09E938B6CD74, eAiICCyVZTYZUHsB8ovf50esPyNBe82bSgAer9Dvu2ypuhtPKK, IC0nhGGnRgS04BIrYSCjk8W86RJVs4D0aY0hPnWFn2Gt9ySTgh, y9RxIdTzi4KtIhw7QWgoln5OGcATCRHRLydL8xNUdnJLtgPBNb, jVh3d8hGoXNa13NCDAKBhiMgOV58CSvp9LK8Hu2S1wQi9wJT7H, 10027, 1, AAAAA, 2016-04-08 08:52:42.442, null, 2016-04-08 08:52:42.442, 1, 51000]
+[EL Fine]: sql: 2016-04-08 08:52:42.513--ClientSession(2127228737)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--INSERT INTO ast_Question_M (questionId, levelid, question, questionDetails, questionIcon, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+	bind => [CBE01915-293E-4F60-8047-7272AB6D302F, 6, lH27e0j03HDipNvoHVf9BZPGWtN6Oa8Ifm99uBxLiBczuEjqnu, 6Wke4jF4bq, NWsOTlQVmaHvMoj6eobbHN42GdMw4iRbAiKfUfzz0rHrwpLSRw, 1, AAAAA, 2016-04-08 08:52:42.507, null, 2016-04-08 08:52:42.507, 1, 51000]
+[EL Fine]: sql: 2016-04-08 08:52:42.58--ClientSession(1943632765)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--INSERT INTO ast_User_T (userId, allowMultipleLogin, changePasswordNextLogin, genTempOneTimePassword, isDeleted, isLocked, lastPasswordChangeDate, multiFactorAuthEnabled, passwordAlgo, passwordExpiryDate, sessionTimeout, userAccessCode, userAccessDomainId, userAccessLevelId, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+	bind => [8AFD55D1-53D2-4E19-9B93-A0E5D439E24C, 1, 1, 1, 1, 1, 2016-04-08 08:31:11.109, 1, JC0fCGh5bBQREc0MizOQrKKPgGf3jPA4cjcjLsIISk0ojdLkW1, 2016-04-08 08:31:11.109, 3427, 54396, F7E5BAEE-F435-498A-8772-745C343D558A, 15B7A04C-A970-4BE1-AD84-09E938B6CD74, 1, AAAAA, 2016-04-08 08:52:42.341, null, 2016-04-08 08:52:42.341, 1, 51000]
+[EL Fine]: sql: 2016-04-08 08:52:42.582--ClientSession(1943632765)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--INSERT INTO ast_PassRecovery_TP (passRecoveryId, answer, questionId, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode, userId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+	bind => [25F6EA56-9438-4CB2-84E3-191CA2C81EDB, lor2wkQqyDpHR6ClPz77LLrphWkN9EiPSu20nWXHnhKG88reNm, CBE01915-293E-4F60-8047-7272AB6D302F, 1, AAAAA, 2016-04-08 08:52:42.507, null, 2016-04-08 08:52:42.507, 1, 51000, 8AFD55D1-53D2-4E19-9B93-A0E5D439E24C]
+[EL Fine]: sql: 2016-04-08 08:52:42.585--ClientSession(1943632765)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--INSERT INTO ast_UserData_TP (userDataId, last5Passwords, oneTimePassword, oneTimePasswordExpiry, oneTimePasswordGenDate, password, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode, userId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+	bind => [1B068B7A-72F0-42D5-BB59-E1EB94D0C541, 66yIBioE2eaTKncMJmbTvkdxmIqJtvdJPj5PjXn8T61ccoo7Em, 4CiBU56PNyawhO0XAqxCgaCeMDJmyQVw, 6, 2016-04-08 08:31:11.334, K3dZIBQGUvoVzEIkSQSl6gPU657FL6FgXG0K0Qz7UDA80bBUOO, 1, AAAAA, 2016-04-08 08:52:42.563, null, 2016-04-08 08:52:42.563, 1, 51000, 8AFD55D1-53D2-4E19-9B93-A0E5D439E24C]
+[EL Fine]: sql: 2016-04-08 08:52:42.645--ClientSession(1667253688)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--INSERT INTO ast_SalesRegion_M (regioncode, regionname, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+	bind => [C02E7E81-E247-4510-BD92-42AD6B23DA04, CT0Phr2LX3gjQFhfMdegYARZq0wb0HikV9Dh3afRMSrscQiWhU, 1, AAAAA, 2016-04-08 08:52:42.641, null, 2016-04-08 08:52:42.641, 1, 51000]
+Setting logged in user info for ADD
+[EL Fine]: sql: 2016-04-08 08:52:42.724--ClientSession(1942925273)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--INSERT INTO ast_UserAccess_M (region, userId, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+	bind => [C02E7E81-E247-4510-BD92-42AD6B23DA04, 8AFD55D1-53D2-4E19-9B93-A0E5D439E24C, 1, AAAAA, 2016-04-08 08:52:42.721, null, 2016-04-08 08:52:42.721, 1, 51000]
+[EL Fine]: sql: 2016-04-08 08:52:42.725--ClientSession(1942925273)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT LAST_INSERT_ID()
+[EL Fine]: sql: 2016-04-08 08:52:42.846--ClientSession(884091078)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT userAccessId, region, userId, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode FROM ast_UserAccess_M WHERE ((activeStatus = ?) AND (userAccessId = ?))
+	bind => [1, 8]
+Setting logged in user info for UPDATE
+[EL Fine]: sql: 2016-04-08 08:52:42.854--ClientSession(214995537)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT userAccessId, region, userId, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode FROM ast_UserAccess_M WHERE (userAccessId = ?)
+	bind => [8]
+[EL Fine]: sql: 2016-04-08 08:52:42.857--ClientSession(214995537)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--UPDATE ast_UserAccess_M SET updatedBy = ?, versionId = ? WHERE ((userAccessId = ?) AND (versionId = ?))
+	bind => [AAAAA, 2, 8, 1]
+[EL Fine]: sql: 2016-04-08 08:52:42.912--ClientSession(1456834948)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT userAccessId, region, userId, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode FROM ast_UserAccess_M WHERE ((activeStatus = ?) AND (userAccessId = ?))
+	bind => [1, 8]
+[EL Fine]: sql: 2016-04-08 08:52:42.918--ClientSession(1502212476)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT userAccessId, region, userId, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode FROM ast_UserAccess_M WHERE ((activeStatus = ?) AND (region = ?))
+	bind => [1, C02E7E81-E247-4510-BD92-42AD6B23DA04]
+[EL Fine]: sql: 2016-04-08 08:52:42.924--ClientSession(1469515652)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT userAccessId, region, userId, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode FROM ast_UserAccess_M WHERE ((activeStatus = ?) AND (userId = ?))
+	bind => [1, 8AFD55D1-53D2-4E19-9B93-A0E5D439E24C]
+[EL Fine]: sql: 2016-04-08 08:52:42.93--ClientSession(277651873)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT userAccessId, region, userId, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode FROM ast_UserAccess_M WHERE (userAccessId = ?)
+	bind => [8]
+[EL Fine]: sql: 2016-04-08 08:52:42.932--ClientSession(277651873)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--DELETE FROM ast_UserAccess_M WHERE ((userAccessId = ?) AND (versionId = ?))
+	bind => [8, 2]
+[EL Fine]: sql: 2016-04-08 08:52:43.042--ClientSession(1223229089)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT regioncode, regionname, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode FROM ast_SalesRegion_M WHERE (regioncode = ?)
+	bind => [C02E7E81-E247-4510-BD92-42AD6B23DA04]
+[EL Fine]: sql: 2016-04-08 08:52:43.044--ClientSession(1223229089)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--DELETE FROM ast_SalesRegion_M WHERE ((regioncode = ?) AND (versionId = ?))
+	bind => [C02E7E81-E247-4510-BD92-42AD6B23DA04, 1]
+[EL Fine]: sql: 2016-04-08 08:52:43.223--ClientSession(658313725)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT userId, allowMultipleLogin, changePasswordNextLogin, genTempOneTimePassword, isDeleted, isLocked, lastPasswordChangeDate, multiFactorAuthEnabled, passwordAlgo, passwordExpiryDate, sessionTimeout, userAccessCode, userAccessDomainId, userAccessLevelId, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode FROM ast_User_T WHERE (userId = ?)
+	bind => [8AFD55D1-53D2-4E19-9B93-A0E5D439E24C]
+[EL Fine]: sql: 2016-04-08 08:52:43.225--ClientSession(658313725)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT userDataId, last5Passwords, oneTimePassword, oneTimePasswordExpiry, oneTimePasswordGenDate, password, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode, userId FROM ast_UserData_TP WHERE (userId = ?)
+	bind => [8AFD55D1-53D2-4E19-9B93-A0E5D439E24C]
+[EL Fine]: sql: 2016-04-08 08:52:43.228--ClientSession(658313725)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT passRecoveryId, answer, questionId, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode, userId FROM ast_PassRecovery_TP WHERE (userId = ?)
+	bind => [8AFD55D1-53D2-4E19-9B93-A0E5D439E24C]
+[EL Fine]: sql: 2016-04-08 08:52:43.232--ClientSession(658313725)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--DELETE FROM ast_UserData_TP WHERE ((userDataId = ?) AND (versionId = ?))
+	bind => [1B068B7A-72F0-42D5-BB59-E1EB94D0C541, 1]
+[EL Fine]: sql: 2016-04-08 08:52:43.233--ClientSession(658313725)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--DELETE FROM ast_PassRecovery_TP WHERE ((passRecoveryId = ?) AND (versionId = ?))
+	bind => [25F6EA56-9438-4CB2-84E3-191CA2C81EDB, 1]
+[EL Fine]: sql: 2016-04-08 08:52:43.235--ClientSession(658313725)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--DELETE FROM ast_User_T WHERE ((userId = ?) AND (versionId = ?))
+	bind => [8AFD55D1-53D2-4E19-9B93-A0E5D439E24C, 1]
+[EL Fine]: sql: 2016-04-08 08:52:43.443--ClientSession(1190199168)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT questionId, levelid, question, questionDetails, questionIcon, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode FROM ast_Question_M WHERE (questionId = ?)
+	bind => [CBE01915-293E-4F60-8047-7272AB6D302F]
+[EL Fine]: sql: 2016-04-08 08:52:43.445--ClientSession(1190199168)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--DELETE FROM ast_Question_M WHERE ((questionId = ?) AND (versionId = ?))
+	bind => [CBE01915-293E-4F60-8047-7272AB6D302F, 1]
+[EL Fine]: sql: 2016-04-08 08:52:43.543--ClientSession(1034764791)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT userAccessLevelId, levelDescription, levelHelp, levelIcon, levelName, userAccessLevel, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode FROM ast_UserAccessLevel_M WHERE (userAccessLevelId = ?)
+	bind => [15B7A04C-A970-4BE1-AD84-09E938B6CD74]
+[EL Fine]: sql: 2016-04-08 08:52:43.545--ClientSession(1034764791)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--DELETE FROM ast_UserAccessLevel_M WHERE ((userAccessLevelId = ?) AND (versionId = ?))
+	bind => [15B7A04C-A970-4BE1-AD84-09E938B6CD74, 1]
+[EL Fine]: sql: 2016-04-08 08:52:43.654--ClientSession(2009757621)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--SELECT userAccessDomainId, domainDescription, domainHelp, domainIcon, domainName, userAccessDomain, versionId, createdBy, createdDate, updatedBy, updatedDate, activeStatus, txnAccessCode FROM ast_UserAccessDomain_M WHERE (userAccessDomainId = ?)
+	bind => [F7E5BAEE-F435-498A-8772-745C343D558A]
+[EL Fine]: sql: 2016-04-08 08:52:43.656--ClientSession(2009757621)--Connection(1740073760)--Thread(Thread[Test worker,5,main])--DELETE FROM ast_UserAccessDomain_M WHERE ((userAccessDomainId = ?) AND (versionId = ?))
+	bind => [F7E5BAEE-F435-498A-8772-745C343D558A, 1]
+]]></system-out>
+  <system-err><![CDATA[log4j:WARN No appenders could be found for logger (org.springframework.test.context.junit4.SpringJUnit4ClassRunner).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+]]></system-err>
+</testsuite>
